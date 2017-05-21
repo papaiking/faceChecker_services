@@ -19,6 +19,7 @@ module.exports = function (orm, db) {
                 tsmp = new Date();
                 raw_id = this.user_id + tsmp;
                 this.id = helpers.hashCode(raw_id); 
+                this.created = new Date();
             }
         }
     });

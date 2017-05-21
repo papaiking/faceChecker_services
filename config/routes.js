@@ -2,6 +2,10 @@
 var controllers = require('../app')
 
 module.exports = function (app) {
+    // Allow CORS
+    app.all('/*', controllers.utils.CORS);
+
+    // HOME - served by static folder
     app.get( '/', controllers.home);
     
     // APIs of event for Dashbord Console

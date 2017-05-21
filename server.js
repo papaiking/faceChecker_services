@@ -4,11 +4,21 @@ var settings        = require('./config/settings');
 var environment     = require('./config/environment');
 var routes          = require('./config/routes');
 var models          = require('./models/');
+var sockets         = require('./app/sockets');
 
 module.exports.start = function (done) {
     var app = express.createServer();
 
     environment(app);
+    var io = sockets(app);
+
+    app.all('/*', function (req, res, next) {
+        console.log('assign socket');
+        req.io = io;
+        return next();
+    });
+
+
     routes(app);
 
     app.listen(settings.port, function () {
@@ -26,6 +36,8 @@ module.exports.start = function (done) {
             return done(e);
         }
     });
+
+
 }
 
 // If someone ran: "node server.js" then automatically start the server

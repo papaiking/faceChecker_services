@@ -17,5 +17,13 @@ module.exports = {
         var crypto = require('crypto');
         var md5sum = crypto.createHash('md5');
         return md5sum.update(instr).digest('hex');
-    }  
+    },
+
+     // Allow CORS for APIs
+    CORS: function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        next();
+    }
+
 };

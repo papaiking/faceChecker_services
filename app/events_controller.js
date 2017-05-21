@@ -3,12 +3,14 @@ var orm = require('orm');
 
 module.exports = {
     create: function (req, res, next) {
-        console.log("Start creating new event", req.device);
+        console.log("Start creating new event");
         
         // This id get from request token
         var device_id = req.device.id;
         var data = req.body;
         data.device_id = device_id;
+
+        
 
         req.models.event.create(data, function (err, saved_event) {
             if(err) {
@@ -19,10 +21,14 @@ module.exports = {
                     return next(err);
                 }
             }
-            //console.log("new event is: ", saved_event);
+            console.log("new event is: ", saved_event);
+            // Emit message to dashboard
+            socketio = req.io;
+            socketio.sockets.emit('New_Message', saved_event);
 
             return res.json(saved_event);
         });
+
     },
     
     list: function(req, res, next) {
