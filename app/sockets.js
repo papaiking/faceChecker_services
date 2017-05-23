@@ -32,11 +32,11 @@ module.exports = function(app) {
 		});
 	});
 
-//    app.use( function (req, res, next) {
-//        console.log('assign socket');
-//        req.io = io;
-//        return next();
-//    });
+    app.all('/*', function (req, res, next) {
+        console.log('assign socket');
+        req.io = io;
+        return next();
+    });
 
     return io;
 }

@@ -1,5 +1,4 @@
 var helpers = require('./_helpers');
-var orm = require('orm');
 
 module.exports = {
     create: function (req, res, next) {
@@ -21,7 +20,7 @@ module.exports = {
                     return next(err);
                 }
             }
-            console.log("new event is: ", saved_event);
+            //console.log("new event is: ", saved_event);
             // Emit message to dashboard
             socketio = req.io;
             socketio.sockets.emit('New_Message', saved_event);

@@ -1,8 +1,6 @@
-var helpers = require('./_helpers');
-var orm = require('orm');
-var Device = require('../models/devices');
-var jwt = require('jsonwebtoken');
-var settings = require('../config/settings');
+//var helpers = require('./_helpers');
+//var jwt = require('jsonwebtoken');
+//var settings = require('../config/settings');
 
 module.exports = {
     // Service to insert new device into database
@@ -13,7 +11,7 @@ module.exports = {
             if (err) throw err;
         
             console.log('Device created successfully');
-            res.json({ success: true, device: obj});            
+            res.json({ status: 1, message: 'OK', device: obj});            
         });
     },
     
@@ -31,17 +29,15 @@ module.exports = {
         });
     },
     
-    // Get access token for each device
-    getToken: function (req, res) {
+    // Get access token for device specify by device id
+    deviceInfo: function (req, res) {
         var id = req.params.id;
 
         req.models.device.get(id, function (err, device){
             if (err) throw err;
 
-            delete device.secret;
-            var token = jwt.sign( device, settings.secret);
             //console.log('Token: ', token);
-            res.json({status: 1, message: 'OK', token: token});
+            res.json({status: 1, message: 'OK', device: device});
         })
     } 
 };

@@ -14,7 +14,7 @@ module.exports = function (app) {
     // APIs of device for Dashbord Console
     app.get('/device/list/:limit', controllers.devices.list);
     app.post('/device/add', controllers.devices.create);
-    app.get('/device/token/:id', controllers.devices.getToken);
+    app.get('/device/info/:id', controllers.devices.deviceInfo);
 
     // API for gateway device
     app.post('/gateway/add_event', controllers.oauth.check_deviceToken, controllers.events.create);

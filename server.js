@@ -10,15 +10,7 @@ module.exports.start = function (done) {
     var app = express.createServer();
 
     environment(app);
-    var io = sockets(app);
-
-    app.all('/*', function (req, res, next) {
-        console.log('assign socket');
-        req.io = io;
-        return next();
-    });
-
-
+    sockets(app);
     routes(app);
 
     app.listen(settings.port, function () {

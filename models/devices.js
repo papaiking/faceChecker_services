@@ -1,3 +1,6 @@
+var helpers = require('../app/_helpers');
+var jwt = require('jsonwebtoken');
+var settings = require('../config/settings');
 
 module.exports = function (orm, db) {
     var Device = db.define('device', {
@@ -8,12 +11,23 @@ module.exports = function (orm, db) {
         about: String,
         created: { type: 'date' }
     }, {
-        autoFetch : true,
-        cache : false,
+        hooks: {
+            beforeValidation: function () {
+                tsmp = new Date();
+                raw_id = this.address + this.about + tsmp;
+                this.id = helpers.hashCode(raw_id);
+                this.created = new Date();
+                this.status = 0;
+                this.secret = jwt.sign( this, settings.secret);
+            }
+        },
         methods: {
-
-            generate: function() {
-            }    
+            resetToken: function () {
+                tsmp = new Date();
+                raw_id = this.address + this.about + tsmp;
+                this.id = helpers.hashCode(raw_id);
+                this.secret = jwt.sign( this, settings.secret);
+            }
         }
     });
 
