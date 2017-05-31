@@ -33,7 +33,7 @@ module.exports = function(app) {
 	});
 
     app.all('/*', function (req, res, next) {
-        console.log('assign socket');
+        //console.log('assign socket');
         req.io = io;
         return next();
     });

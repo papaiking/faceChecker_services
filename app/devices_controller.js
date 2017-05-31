@@ -20,8 +20,9 @@ module.exports = {
 
         console.log("Start geting devices");
         limit = parseInt(req.params.limit);
+        offset = parseInt(req.params.offset);
 
-        req.models.device.find({}, ['created', 'Z'], {limit: limit}, function(err, devices) {
+        req.models.device.find({}, ['created', 'Z'], {limit: limit}, {offset: offset},  function(err, devices) {
             if (err) throw err;
 
             //console.log("Event list: ", devices);
@@ -39,5 +40,44 @@ module.exports = {
             //console.log('Token: ', token);
             res.json({status: 1, message: 'OK', device: device});
         })
+    },
+
+    // Update device information
+    updateDeviceInfo: function (req, res) {
+        var update = req.body;
+
+        var id = update.id;
+        req.models.device.get(id, function (err, device){
+            if (err) throw err;
+
+            if (update.address)
+                device.address = update.address
+            if (update.about)
+                device.about = update.about
+           
+            device.save(function (err) {
+                if (err)    throw err;
+
+                console.log("Update device successful!");
+                res.json({status: 1, message: 'OK', device: device});
+            });
+        })
+    },
+
+    // Delete device specified by device id 
+    deleteDevice: function (req, res) {
+        var id = req.params.id;
+
+        req.models.device.get(id, function (err, device){
+            if (err) throw err;
+
+            device.remove(function (err) {
+                if (err) throw err;
+
+                console.log("Deleted device!");
+                res.json({status: 1, message: 'Deleted', device_id: device.id});
+            });            
+        })
     } 
+
 };
