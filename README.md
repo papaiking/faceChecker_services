@@ -64,6 +64,7 @@ Go to project folder, edit the configuration file: `/config/settings.js` , updat
 -   secret: this is the random string working as seed for JWT. After running system, don’t change this value.
 -   identity information of Linkedface++ third party application (app_id and app_secret)
 
+```
 var settings = {
     path        : path.normalize(path.join(__dirname, '..')),
     port        : process.env.NODE_PORT || 9100,
@@ -83,6 +84,7 @@ var settings = {
     }
 };
 ```
+
 # Run application
 
 Go to project folder and run command: `npm start`
