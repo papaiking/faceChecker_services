@@ -88,6 +88,7 @@ var settings = {
 Go to project folder and run command: `npm start`
 
 Following output as successful installation:
+
 ```
 osboxes@linkedface:~/faceChecker/facechecker_server$ npm start
 
@@ -96,7 +97,7 @@ osboxes@linkedface:~/faceChecker/facechecker_server$ npm start
 
 [nodemon] 1.11.0
 [nodemon] to restart at any time, enter `rs`
-[nodemon] watching: /home/osboxes/faceChecker/facechecker_server/app/**/* /home/osboxes/faceChecker/facechecker_server/config/**/* /home/osboxes/faceChecker/faceche    cker_server/models/**/* node_modules/sql-query server.js
+[nodemon] watching: /home/osboxes/faceChecker/facechecker_server/app/**/* /home/osboxes/faceChecker/facechecker_server/config/**/* /home/osboxes/faceChecker/facechecker_server/models/**/* node_modules/sql-query server.js
 [nodemon] starting `node server.js`
 Listening on port 9100
 ```
