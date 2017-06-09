@@ -3,11 +3,14 @@
     "name"        : "FaceChecker_Server",
     "description" : "Services for Facechecker application",
     "license"     : "MIT",
-    "homepage"    : "http://labsofthings.com/",
+    "homepage"    : "http://labsofthings.com/facechecker",
     "contributors": [
         { "name" : "Thuc X.Vu", "email" : "thuc@labsofthings.com" }
     ],
-
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/username/repository.git"
+    },
     "dependencies": {
         "express": "2.5.8",
         "body-parser": "1.9",
