@@ -52,6 +52,7 @@ module.exports = {
                 console.log('Error on request: ', err);
                 return res.json({status: 0, message: 'Error on get Linkedface access token'});
             }
+            //console.log(body)
             res_token = JSON.parse(body);
             res_token.status = 1;
             res_token.message = 'OK';

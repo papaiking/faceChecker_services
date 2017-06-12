@@ -12,10 +12,12 @@ var settings = {
         password: "lot123"
     },
     secret      : 'ANY_STRING_HERE',
-    Linkedface_OAUTH    : 'https://api.linkedface.com/oauth', 
+    Linkedface_OAUTH    : 'https://api.linkedface.com/oauth/app/token',
+    Linkedface_USER_INFO:    'https://api.linkedface.com/oauth/app/user_info/{0}', 
     app_identity: {
-        app_id:"73705ee75cbdf46f7d68539e7523e879", 
-        secret:"RC3VZ53O5DJH3V687WCKOXZ81XQF80RY"
+        // Connect to application: SURVEILLANCE CAMERA
+        app_id:"0b3422a7a3c9c48f21ff165abfdafe44", 
+        secret:"AHHBOVBE21Q1TEP4JTJMH9XRBC3TAVSH"
     }
 };
 
