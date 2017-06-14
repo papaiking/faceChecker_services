@@ -10,6 +10,8 @@ module.exports = function (app) {
         app.use(express.bodyParser());
         app.use(express.methodOverride());
         app.use(function (req, res, next) {
+
+            // Init model
             models(function (err, db) {
                 if (err) return next(err);
 

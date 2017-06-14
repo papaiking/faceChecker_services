@@ -22,4 +22,6 @@ module.exports = function (app) {
     app.post('/gateway/add_event', controllers.oauth.check_deviceToken, controllers.events.create);
     app.get('/gateway/linkedface_token', controllers.oauth.check_deviceToken, controllers.oauth.linkedface_token);
 
+    // APIs on user profile
+    app.get('/linkedface/profile/:id', controllers.linkedface.user_profile);
 };

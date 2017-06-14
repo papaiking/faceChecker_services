@@ -13,7 +13,7 @@ var settings = {
     },
     secret      : 'ANY_STRING_HERE',
     Linkedface_OAUTH    : 'https://api.linkedface.com/oauth/app/token',
-    Linkedface_USER_INFO:    'https://api.linkedface.com/oauth/app/user_info/{0}', 
+    Linkedface_USER_INFO:    'https://api.linkedface.com/ifaces/app/user_info/', 
     app_identity: {
         // Connect to application: SURVEILLANCE CAMERA
         app_id:"0b3422a7a3c9c48f21ff165abfdafe44", 

@@ -1,6 +1,33 @@
 var settings = require('../config/settings');
 
+// Function to request and extract token from Linkedface
+var request_linkedface_token = function( cb ) {
+    console.log('Starting get access token from Linkedface');
+    
+    // Making post request to Linkedface to get access token
+    var request = require('request');
+    var postData = {
+        headers: {'content-type' : 'application/json'},
+        url: settings.Linkedface_OAUTH,
+        body: JSON.stringify( settings.app_identity ) 
+    }
+    request.post( postData, function(err, response, body) {
+        if (err || response.statusCode != 200) {
+            console.log('Error on request: ', err);
+            cb( {status: 0, message: 'Error on get Linkedface access token'} );
+        }
+        //console.log(body)
+        res_token = JSON.parse(body);
+
+        res_token.status = 1;
+        res_token.message = 'OK';
+        cb( res_token );
+    });
+}
+
+
 module.exports = {
+    request_linkedface_token: request_linkedface_token,
 
     // middleware to verify a token
     // This funcion intercept requests from devices to check device token
@@ -36,30 +63,13 @@ module.exports = {
         }
     },
     
+
     // Function to get access token from Linkedface
     linkedface_token: function( req, res, next ) {
-        console.log('Starting get access token from Linkedface');
-        
-        // Making post request to Linkedface to get access token
-        var request = require('request');
-        var postData = {
-            headers: {'content-type' : 'application/json'},
-            url: settings.Linkedface_OAUTH,
-            body: JSON.stringify( settings.app_identity ) 
-        }
-        request.post( postData, function(err, response, body) {
-            if (err) {
-                console.log('Error on request: ', err);
-                return res.json({status: 0, message: 'Error on get Linkedface access token'});
-            }
-            //console.log(body)
-            res_token = JSON.parse(body);
-            res_token.status = 1;
-            res_token.message = 'OK';
-            //res.json( JSON.parse(body) );
+        request_linkedface_token( function ( res_token ) {
+            req.app.token = res_token['token'];
             res.json( res_token )
         });
- 
     }
 
 };
