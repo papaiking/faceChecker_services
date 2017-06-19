@@ -18,7 +18,13 @@ module.exports = function (orm, db) {
                 this.id = helpers.hashCode(raw_id);
                 this.created = new Date();
                 this.status = 0;
-                this.secret = jwt.sign( this, settings.secret);
+                current_Time = Date.now() / 1000 | 0
+                jwt_data = {
+                    iat: current_Time,
+                    sub: this.id,
+                    exp: current_Time + 2592000
+                }
+                this.secret = jwt.sign( jwt_data, settings.secret);
             }
         },
         methods: {

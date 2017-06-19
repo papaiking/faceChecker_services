@@ -39,14 +39,13 @@ module.exports = {
     
         // decode token
         if (token) {
-    
             // verifies secret and checks exp
             jwt.verify(token, settings.secret, function(err, decoded) { 
                 if (err) {
-                    return res.json({ status: 0, message: 'Failed to authenticate token.' });      
+                    return res.status(401).json({ status: 0, message: 'Failed to authenticate token.' });      
                 } else {
                     // if everything is good, save to request for use in other routes
-                    req.device = decoded;      
+                    req.device = decoded; 
                     next();
                 }
             });

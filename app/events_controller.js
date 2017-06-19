@@ -5,11 +5,9 @@ module.exports = {
         console.log("Start creating new event");
         
         // This id get from request token
-        var device_id = req.device.id;
+        device = req.device;
         var data = req.body;
-        data.device_id = device_id;
-
-        
+        data.device_id = device.sub;
 
         req.models.event.create(data, function (err, saved_event) {
             if(err) {
