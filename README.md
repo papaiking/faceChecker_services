@@ -21,6 +21,9 @@ Do following tasks:
 
 Clone FaceChecker-Service from repository: [https://github.com/papaiking/faceChecker_services.git](https://github.com/papaiking/faceChecker_services.git)
 
+### Install dependencies
+Go to project folder and run command: `npm install`
+
 ### Database
 
 As you see in FaceChecker architecture, this service use a relation database. In this version, we use MySQL version: 5.6

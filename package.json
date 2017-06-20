@@ -11,6 +11,9 @@
         "type": "git",
         "url": "git://github.com/username/repository.git"
     },
+    "devDependencies": {
+        "nodemon": "~1.11.0"
+    },
     "dependencies": {
         "express": "2.5.8",
         "body-parser": "1.9",
