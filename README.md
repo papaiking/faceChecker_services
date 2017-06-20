@@ -30,13 +30,14 @@ As you see in FaceChecker architecture, this service use a relation database. In
 
 You can get reference on how to install MySQL on Ubuntu here: [https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-14-04](https://www.di    gitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-14-04)
 
-After this step, let’s create database:
+After this step, let’s create database, user and grant access:
 
 ```
 $ mysql -u root –p
 Enter password
 mysql> CREATE DATABASE facechecker
 mysql> CREATE USER 'facechecker'@'localhost' IDENTIFIED BY 'lot123';
+mysql> GRANT ALL PRIVILEGES ON facechecker.* TO 'facechecker'@'localhost';
 ```
 
 Then import database.
